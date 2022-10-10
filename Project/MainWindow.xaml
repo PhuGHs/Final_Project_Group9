@@ -1,0 +1,196 @@
+﻿<Window x:Class="Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:uc="clr-namespace:QuanLyNhaHang.UserControlRS"
+        mc:Ignorable="d"
+        Title="Restaurant Management" Height="820" Width="1360" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        DataContext="{StaticResource MainVM}"
+        Style="{StaticResource Font}"
+        >
+    
+    <Grid MouseDown="Border_MouseDown">
+        <Grid.Resources>
+            <Style x:Key="ArrowDownButton" TargetType="Button">
+                <Setter Property="Background" Value="#002B5B"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="Transparent">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#002B5B"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ArrowDownIcon" TargetType="fa:IconImage">
+                <Setter Property="Foreground" Value="#707db2"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="#1C3879"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--LeftMenu-->
+        <Border Background="#1C3879" CornerRadius="10 0 0 10">
+            <StackPanel>
+                <!--logo-->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                    <Image Source="pack://application:,,,/images/logo.png" Width="150" Height="150" />
+                    <TextBlock Foreground="#BFACE0" TextAlignment="Center" FontFamily="{StaticResource MaterialDesignFont}" FontSize="20">Ninres RM</TextBlock>
+                </StackPanel>
+                <uc:Navigator DataContext="{Binding Navigator}"/>
+            </StackPanel>
+        </Border>
+        <!--MainSection-->
+        <Border Grid.Column="1" CornerRadius="0 10 10 0" Background="#EEEEEE">
+            <Grid x:Name="main_section">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--HEADER-->
+                <UserControl x:Name="HeaderControl">
+                    <Grid Background="#fff" Width="{Binding ActualWidth, ElementName=main_section}"  Margin="20 20 20 0" >
+                        <Grid.Resources>
+                            <Style x:Key="HeaderButton" TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Width" Value="25"/>
+                                <Setter Property="Height" Value="25"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="Transparent">
+                                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style x:Key="HeaderProfileButton" TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="Transparent">
+                                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style x:Key="HeaderProfileAvatar" TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                                <Setter Property="Width" Value="35"/>
+                                <Setter Property="Height" Value="35" />
+                                <Setter Property="Background" Value="#CFD2CF" />
+                            </Style>
+                            <Style x:Key="HeaderProfileName" TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="18"/>
+                                <Setter Property="FontWeight" Value="Medium"/>
+                                <Setter Property="Foreground" Value="Black" />
+                            </Style>
+                            <Style x:Key="SearchBar" TargetType="Border">
+                                <Setter Property="Width" Value="300"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="#DFDFDE"/>
+                                <Setter Property="CornerRadius" Value="10"/>
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFocused, ElementName=txtInput}" Value="True">
+                                        <Setter Property="BorderBrush" Value="#1C3879"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style x:Key="SearchBarButton" TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Width" Value="25"/>
+                                <Setter Property="Height" Value="25"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="Transparent">
+                                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style x:Key="SearchBarIcon" TargetType="fa:IconImage">
+                                <Setter Property="Width" Value="15"/>
+                                <Setter Property="Height" Value="15"/>
+                                <Setter Property="Margin" Value="5 0 0 0" />
+                                <Setter Property="Foreground" Value="#D8D8D8"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFocused, ElementName=txtInput}" Value="True">
+                                        <Setter Property="Foreground" Value="#1C3879"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="25" Width="200" FontWeight="SemiBold" Margin="20 0 0 0" VerticalAlignment="Center" Text="{Binding Navigator.CurrentTitle}" />
+
+                        <Border Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SearchBar}">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource SearchBarButton}">
+                                    <fa:IconImage Icon="MagnifyingGlass" Style="{StaticResource SearchBarIcon}"/>
+                                </Button>
+                                <TextBox x:Name="txtInput" Text="Tìm kiếm món ăn" BorderThickness="0" Width="250" Height="35" Margin="10 0 0 0" FontSize="16" Foreground="#73777B"/>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Grid.Column="3" VerticalAlignment="Center" Orientation="Horizontal" Height="35">
+                            <Button Style="{StaticResource HeaderButton}" Margin="30 0 20 0" BorderThickness="0">
+                                <fa:IconImage Icon="Bell" />
+                            </Button>
+
+                            <Button Style="{StaticResource HeaderProfileButton}">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <Border Style="{StaticResource HeaderProfileAvatar}" />
+                                    <TextBlock Margin="5 0 0 0" Text="Lê Văn Phú"  TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderProfileName}"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Width="150" Style="{StaticResource HeaderButton}" Margin="20 0 20 0" BorderThickness="0" Command="{Binding Header.CloseWindowCommand}" CommandParameter="{Binding ElementName=HeaderControl}" HorizontalAlignment="Right">
+                                <fa:IconImage Icon="PowerOff" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </UserControl>
+                <!--Main feature-->
+                <Border Grid.Row="2" CornerRadius="10"  Margin="20 0 20 20">
+                    <ContentControl Content="{Binding Navigator.CurrentViewModel}"></ContentControl>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

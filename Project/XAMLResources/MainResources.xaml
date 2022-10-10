@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:QuanLyNhaHang.ViewModel"
+                    xmlns:view="clr-namespace:QuanLyNhaHang.View"
+                    >
+    <DataTemplate DataType="{x:Type viewmodel:MenuViewModel}">
+        <view:Menu />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:LichSuBanViewModel}">
+        <view:LichSuBan />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:KhoViewModel}">
+        <view:LichSuBan />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:TinhTrangBanViewModel}">
+        <view:LichSuBan />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:CaiDatViewModel}">
+        <view:LichSuBan />
+    </DataTemplate>
+    <Style TargetType="Window" x:Key="Font">
+        <Setter Property="FontFamily" Value="Comfortaa"/>
+    </Style>
+    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+</ResourceDictionary>
