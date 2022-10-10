@@ -19,7 +19,7 @@
         <view:LichSuBan />
     </DataTemplate>
     <Style TargetType="Window" x:Key="Font">
-        <Setter Property="FontFamily" Value="Comfortaa"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
     </Style>
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
 </ResourceDictionary>
