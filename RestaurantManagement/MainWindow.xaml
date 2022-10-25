@@ -64,7 +64,7 @@
         <Border Grid.Column="1" CornerRadius="0 10 10 0" Background="#EEEEEE">
             <Grid x:Name="main_section">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="110"/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -164,7 +164,7 @@
                                 <Button Style="{StaticResource SearchBarButton}">
                                     <fa:IconImage Icon="MagnifyingGlass" Style="{StaticResource SearchBarIcon}"/>
                                 </Button>
-                                <TextBox x:Name="txtInput" Text="Tìm kiếm món ăn" BorderThickness="0" Width="250" Height="35" Margin="10 0 0 0" FontSize="16" Foreground="#73777B"/>
+                                <TextBox x:Name="txtInput" materialDesign:HintAssist.Hint="Tìm kiếm món ăn" BorderThickness="0" Width="250" Height="35" Margin="10 0 0 0" FontSize="16" Foreground="#73777B"/>
                             </StackPanel>
                         </Border>
 
@@ -180,7 +180,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Width="150" Style="{StaticResource HeaderButton}" Margin="20 0 20 0" BorderThickness="0" Command="{Binding Header.CloseWindowCommand}" CommandParameter="{Binding ElementName=HeaderControl}" HorizontalAlignment="Right">
+                            <Button Width="40" ToolTip="Thoát" HorizontalAlignment="Right" Style="{StaticResource HeaderButton}" Margin="20 0 20 0" BorderThickness="0" Command="{Binding Header.CloseWindowCommand}" CommandParameter="{Binding ElementName=HeaderControl}">
                                 <fa:IconImage Icon="PowerOff" />
                             </Button>
                         </StackPanel>
