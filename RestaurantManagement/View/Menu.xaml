@@ -2,10 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:uc="clr-namespace:QuanLyNhaHang.UserControlRS"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:QuanLyNhaHang.ViewModel"
@@ -40,9 +40,12 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Width="160">
                             <Label Content="Sắp xếp" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"/>
-                            <ComboBox HorizontalAlignment="Center" Width="100">
-                                <ComboBoxItem IsSelected="True">A-Z</ComboBoxItem>
-                                <ComboBoxItem>Z-A</ComboBoxItem>
+                            <ComboBox HorizontalAlignment="Center" Width="100" SelectedItem="{Binding MyComboboxSelectedItem_2, Mode=TwoWay}" ItemsSource="{Binding ComboboxItems_2}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding FilterFoodByPriceCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ComboBox>
                         </StackPanel>
                     </StackPanel>
@@ -58,15 +61,15 @@
                                     <materialDesign:Card Width="180" Height="250" Margin="10">
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="100"/>
+                                                <RowDefinition Height="130"/>
                                                 <RowDefinition Height="80" />
-                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="30" />
                                             </Grid.RowDefinitions>
 
                                             <Image Source="{Binding Path=FoodImage}" Stretch="UniformToFill" />
                                             <StackPanel Grid.Row ="1" Orientation="Vertical" HorizontalAlignment="Center">
                                                 <TextBlock FontWeight="SemiBold" FontSize="20"  Margin="0 10 0 0" TextAlignment="Center" Text="{Binding Path=FoodName}"/>
-                                                <TextBlock FontWeight="Regular" FontSize="20" Margin="0 10 0 0" TextAlignment="Center" Text="{Binding Path=PriceVNDCurrency}"/>
+                                                <TextBlock FontWeight="Regular" FontSize="18" Margin="0 10 0 0" TextAlignment="Center" Text="{Binding Path=PriceVNDCurrency}"/>
                                             </StackPanel>
                                             <Button             
                                                 Command="{Binding ElementName=vm, Path=DirectingFoodToOrderListCommand}" CommandParameter="{Binding}"
@@ -92,14 +95,40 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="120"/>
-                                <RowDefinition Height="230"/>
+                                <RowDefinition Height="300"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" Padding="20" Background="#1C3879" CornerRadius="20 20 0 0" Margin="0 20 0 0">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Height="30" Foreground="#fff" FontWeight="SemiBold" FontSize="20">New Order</TextBlock>
-                                    <TextBlock Height="30" Foreground="#fff" FontWeight="Light" FontSize="16" Text="{Binding Day, UpdateSourceTrigger=PropertyChanged}"/>
-                                </StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Height="30" Foreground="#fff" FontWeight="SemiBold" FontSize="20">New Order</TextBlock>
+                                        <TextBlock Height="30" Foreground="#fff" FontWeight="Light" FontSize="16" Text="{Binding Day, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                    <ComboBox
+                                        Grid.Column="1" 
+                                        Foreground="#fff"
+                                        FontSize="20"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center"
+                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                            <ComboBoxItem IsSelected="True" FontSize="18" Foreground="Black">
+                                                Bàn 9
+                                            </ComboBoxItem>
+                                            <ComboBoxItem FontSize="18" Foreground="Black">
+                                                Bàn 1
+                                            </ComboBoxItem>
+                                            <ComboBoxItem FontSize="18" Foreground="Black">
+                                                Bàn 2
+                                            </ComboBoxItem>
+                                        <ComboBoxItem FontSize="18" Foreground="Black">
+                                            Bàn 3
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
                             </Border>
                             <ScrollViewer Grid.Row="1">
                                 <StackPanel Orientation="Vertical" x:Name="border">
@@ -123,8 +152,8 @@
                                                                     <fa:IconImage Icon="TrashCan" Foreground="#1C3879" Height="14" Width="14" />
                                                                 </Button>
                                                                 <TextBlock Grid.Column="1" Text="{Binding FoodName}" TextAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold"/>
-                                                                <TextBlock Grid.Column="2" Text="{Binding ID}"/>
-                                                                <TextBlock Grid.Column="3" Text="{Binding PriceVNDCurrency}" TextAlignment="Right" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold"/>
+                                                                <TextBlock Grid.Column="2" Text="{Binding Quantity}" TextAlignment="Center" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                                <TextBlock Grid.Column="3" Text="{Binding PriceVNDCurrency}" ToolTip="Đơn giá" TextAlignment="Right" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" />
                                                             </Grid>
                                                         </Border>
                                                     </DataTemplate>
@@ -169,11 +198,11 @@
                                     <TextBlock Text="150.000VND" FontSize="15" FontWeight="SemiBold" Foreground="#1C3879"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" Margin="10 10 0 0" >
-                                    <Button Background="Transparent" BorderBrush="Red" Width="150">
+                                    <Button Background="Transparent" BorderBrush="Red" Width="150" Command="{Binding ElementName=vm, Path=RemovingAllItemFromOrderList}">
                                         <TextBlock Foreground="Red" Text="HUỶ"/>
                                     </Button>
-                                    <Button Background="Green" BorderThickness="0" Width="150" Margin="50 0 0 0">
-                                        <TextBlock Foreground="White" Text="THANH TOÁN" FontSize="15" FontWeight="SemiBold"/>
+                                    <Button Background="Green" BorderThickness="0" Width="150" Margin="50 0 0 0" Command="{Binding ElementName=vm, Path=OpeningDetailOrder}">
+                                        <TextBlock Foreground="White" Text="HIỂN THỊ CHI TIẾT" FontSize="14" FontWeight="SemiBold"/>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
