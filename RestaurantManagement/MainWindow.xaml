@@ -159,15 +159,6 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" FontSize="25" Width="200" FontWeight="SemiBold" Margin="20 0 0 0" VerticalAlignment="Center" Text="{Binding Navigator.CurrentTitle}" />
 
-                        <Border Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SearchBar}">
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource SearchBarButton}">
-                                    <fa:IconImage Icon="MagnifyingGlass" Style="{StaticResource SearchBarIcon}"/>
-                                </Button>
-                                <TextBox x:Name="txtInput" materialDesign:HintAssist.Hint="Tìm kiếm món ăn" BorderThickness="0" Width="250" Height="35" Margin="10 0 0 0" FontSize="16" Foreground="#73777B"/>
-                            </StackPanel>
-                        </Border>
-
                         <StackPanel Grid.Column="3" VerticalAlignment="Center" Orientation="Horizontal" Height="35">
                             <Button Style="{StaticResource HeaderButton}" Margin="30 0 20 0" BorderThickness="0">
                                 <fa:IconImage Icon="Bell" />
