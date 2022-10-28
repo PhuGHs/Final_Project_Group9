@@ -10,12 +10,13 @@ namespace Menu.Models
 {
     public class MenuModel { }
 
-    public class MenuItem : BaseViewModel
+    public class MenuItem : BaseViewModel, IComparable<MenuItem>
     {
         private int id;
         private string foodName;
         private Decimal price;
         private string foodImage;
+        private int quantity = 1;
         public int ID { get { return id; } set { id = value; } }    
 
         public string FoodName
@@ -62,6 +63,23 @@ namespace Menu.Models
             get { return String.Format("{0:0,0 VND}", Price); }
         }
 
-        
+        public int Quantity
+        {
+            get { return quantity; }
+            set 
+            { 
+                if (quantity != value)
+                {
+                    quantity = value;
+                    OnPropertyChanged("Quantity");
+                }    
+            }
+        }
+
+        public int CompareTo(MenuItem other)
+        {
+            return this.price.CompareTo(other.price);
+        }
+
     }
 }
