@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="QuanLyNhaHang.View.Kho"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:QuanLyNhaHang.View" 
+             mc:Ignorable="d" 
+             d:DesignHeight="660" d:DesignWidth="1060">
+    <Grid Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="btnAddWareHouse"
+                        Grid.Column="0"
+                        Command="{Binding AddCM}"
+                        Background="#1C3879"
+                        Margin="10 5 5 10"
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Nhập">
+                </Button>
+
+
+                <Button Name="btnEditWareHouse"
+                        Grid.Column="1"
+                        Command="{Binding EditCM}"
+                        Background="#1C3879"
+                        Margin="5 5 5 10"
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Sửa">
+                </Button>
+
+
+                <Button Name="btnDeleteWareHouse"
+                        Grid.Column="2"
+                        Command="{Binding DeleteCM}"
+                        Background="#1C3879"
+                        Margin="5 5 5 10"
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Xóa">
+                </Button>
+
+
+                <Button Name="btnCheckWareHouse"
+                        Grid.Column="3"
+                        Command="{Binding CheckCM}"
+                        Background="#1C3879"
+                        Margin="5 5 10 10"
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Kiểm tra">
+                </Button>
+
+                <Grid Grid.Column="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBox Name="txtSearch"
+                         Grid.Column="0"
+                         FontFamily="Comfortaa"
+                         FontSize="16"
+                         Foreground="#1C3879"
+                         Margin="100 42 10 32"
+                         materialDesign:HintAssist.Hint="Tìm kiếm">
+                        <TextBox.Text>
+                            <Binding Path="Tìm kiếm"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <ComboBox materialDesign:HintAssist.Hint="Tìm theo"
+                              Grid.Column="1"
+                              IsEditable="True"
+                              Margin="0 35 10 30"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True">
+                            Tên sản phẩm
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Đơn vị tính
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Ngày nhập kho
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Nguồn nhập
+                        </ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+
+            </Grid>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Grid.Row="1">
+                <ListView ItemsSource="{Binding List}"
+                          FontFamily="Comfortaa"
+                          FontSize="18">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}"
+                                        Width="auto"
+                                        Header="Tên sản phẩm" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Remaining}"
+                                        Width="auto"
+                                        Header="Tồn dư" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Unit}"
+                                        Width="auto"
+                                        Header="Đơn vị tính" />
+                            <GridViewColumn DisplayMemberBinding="{Binding DateIn}"
+                                        Width="auto"
+                                        Header="Ngày nhập" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Suplier}"
+                                        Width="auto"
+                                        Header="Nguồn nhập" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</UserControl>
