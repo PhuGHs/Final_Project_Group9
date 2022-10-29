@@ -17,6 +17,47 @@
     </UserControl.DataContext>
     <Border CornerRadius="10">
         <Grid>
+            <Grid.Resources>
+                <Style x:Key="SearchBar" TargetType="Border">
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="#DFDFDE"/>
+                    <Setter Property="CornerRadius" Value="10"/>
+                    <Setter Property="Padding" Value="2"/>
+                    <Setter Property="Height" Value="35"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsFocused, ElementName=txtInput}" Value="True">
+                            <Setter Property="BorderBrush" Value="#1C3879"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style x:Key="SearchBarButton" TargetType="Button">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Width" Value="25"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="Transparent">
+                                    <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="SearchBarIcon" TargetType="fa:IconImage">
+                    <Setter Property="Width" Value="15"/>
+                    <Setter Property="Height" Value="15"/>
+                    <Setter Property="Margin" Value="5 0 0 0" />
+                    <Setter Property="Foreground" Value="#D8D8D8"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsFocused, ElementName=txtInput}" Value="True">
+                            <Setter Property="Foreground" Value="#1C3879"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
             <Grid Background="#fff">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
@@ -31,7 +72,7 @@
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10 10 0 0">
                         <StackPanel Orientation="Vertical" Width="160">
                             <Label Content="Hạng mục" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"/>
-                            <ComboBox HorizontalAlignment="Center" Width="100">
+                            <ComboBox HorizontalAlignment="Center" Width="100" FontSize="14">
                                 <ComboBoxItem IsSelected="True">Khai vị</ComboBoxItem>
                                 <ComboBoxItem>Lẩu</ComboBoxItem>
                                 <ComboBoxItem>Nướng</ComboBoxItem>
@@ -40,7 +81,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Width="160">
                             <Label Content="Sắp xếp" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"/>
-                            <ComboBox HorizontalAlignment="Center" Width="100" SelectedItem="{Binding MyComboboxSelectedItem_2, Mode=TwoWay}" ItemsSource="{Binding ComboboxItems_2}">
+                            <ComboBox HorizontalAlignment="Center" Width="100" SelectedItem="{Binding MyComboboxSelectedItem_2, Mode=TwoWay}" ItemsSource="{Binding ComboboxItems_2}" FontSize="14">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction Command="{Binding FilterFoodByPriceCommand}"/>
@@ -48,6 +89,14 @@
                                 </i:Interaction.Triggers>
                             </ComboBox>
                         </StackPanel>
+                        <Border Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SearchBar}">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource SearchBarButton}">
+                                    <fa:IconImage Icon="MagnifyingGlass" Style="{StaticResource SearchBarIcon}"/>
+                                </Button>
+                                <TextBox x:Name="txtInput" materialDesign:HintAssist.Hint="Tìm kiếm món ăn" BorderThickness="0" Width="250" Height="35" Margin="10 0 0 0" FontSize="16" Foreground="#73777B"/>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
                         <ItemsControl ItemsSource="{Binding Path=MenuItems}" x:Name="item">
@@ -82,7 +131,6 @@
                                             </Button>
                                         </Grid>
                                     </materialDesign:Card>
-
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
