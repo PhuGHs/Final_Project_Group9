@@ -9,15 +9,10 @@
     <DataTemplate DataType="{x:Type viewmodel:LichSuBanViewModel}">
         <view:LichSuBan />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:KhoViewModel}">
-        <view:LichSuBan />
+    <DataTemplate DataType="{x:Type viewmodel:BepViewModel}">
+        <view:Bep />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:TinhTrangBanViewModel}">
-        <view:LichSuBan />
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:CaiDatViewModel}">
-        <view:LichSuBan />
-    </DataTemplate>
+   
     <Style TargetType="Window" x:Key="Font">
         <Setter Property="FontFamily" Value="Roboto"/>
     </Style>

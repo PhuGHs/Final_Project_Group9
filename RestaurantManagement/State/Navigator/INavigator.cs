@@ -19,6 +19,7 @@ namespace QuanLyNhaHang.State.Navigator
         DangXuat,
         ThongKe,
         Bep
+
     }
     public interface INavigator
     {

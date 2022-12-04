@@ -1,0 +1,180 @@
+﻿<UserControl x:Class="QuanLyNhaHang.View.Bep"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:QuanLyNhaHang.View"
+             mc:Ignorable="d" 
+             TextElement.FontFamily="Comfortaa Light"
+             TextElement.FontSize="15"
+             
+      d:DesignHeight="500" d:DesignWidth="700" Background="White">
+
+
+    <Grid>
+        <Grid Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="471*"/>
+                <ColumnDefinition Width="101*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="88*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBox Name="txtSearch"
+                         Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="0"
+                         Foreground="#1C3879"
+                         Margin="20,10,80,10"
+                         materialDesign:HintAssist.Hint="Tìm kiếm"/>
+
+
+            <DataGrid Name = "dtgStaffTable"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Margin="10,10,10,10"
+                  Padding="10 0 10 0"
+                  Background="#FFF9F9F9"
+                  FontFamily="Comfortaa Light"
+                  FontSize="16"
+                  Foreground="#4F6B9F"
+                  BorderThickness="2"
+                  BorderBrush="#4F6B9F"
+                  RowHeaderWidth="0"
+                  CanUserAddRows="True"
+                  CanUserDeleteRows="True"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"
+                  VerticalGridLinesBrush="#4F6B9F"
+                  HorizontalGridLinesBrush="#4F6B9F" Grid.ColumnSpan="4">
+                <DataGrid.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" 
+                            Value="15"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background"
+                            Value="Transparent"/>
+                        <Setter Property="Height"
+                            Value="35px"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Height" 
+                            Value="30px"/>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="STT"
+                                    Width="100"
+                                    Binding="{Binding STT}"/>
+                    <DataGridTextColumn Header="Tên món"
+                                    Width="130"
+                                    Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Số bàn"
+                                    Width="100"
+                                    Binding="{Binding Table}"/>
+                    <DataGridTextColumn Header="TÌnh trạng"
+                                    Width="100"
+                                    Binding="{Binding TT}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="4" Background="#FFFAFAFA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Name="btnAddStaff"
+                       
+                        Background="#4F6B9F"
+                        Margin="10 5 5 10"
+                        Foreground="White"
+                        FontSize="18"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Thêm">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+
+                <Button Grid.Column="1"
+                        Name="btnEditStaff"
+                        Background="#4F6B9F"
+                        Margin="5 5 5 10"
+                        Foreground="White"
+                        FontSize="18"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Sửa">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+                <Button Grid.Column="2"
+                        Name="btnDeleteStaff"
+                        Background="#4F6B9F"
+                        Margin="5 5 5 10"
+                        Foreground="White"
+                        FontSize="18"
+                        FontFamily="Comfortaa Light"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="Xóa">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+
+            </Grid>
+        </Grid>
+
+
+        <Button Name="btnX"
+                Margin="640,76,14,398"
+                FontFamily="Comfortaa"
+                Background="White"
+                Cursor="Hand"
+                BorderBrush="#4F6B9F"
+                Foreground="#4F6B9F"
+                Content="X">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</UserControl>
+
+

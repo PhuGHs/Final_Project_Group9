@@ -9,6 +9,7 @@ using Menu.Models;
 
 namespace QuanLyNhaHang.ViewModel
 {
+   
     public class MenuViewModel : BaseViewModel
     {
         public MenuViewModel()

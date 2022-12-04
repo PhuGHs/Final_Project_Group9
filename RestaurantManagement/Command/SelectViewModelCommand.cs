@@ -57,6 +57,10 @@ namespace QuanLyNhaHang.Command
                         _navigator1.CurrentTitle = "Kho";
                         _navigator.CurrentViewModel = new KhoViewModel();
                         break;
+                    case TypeOfView.Bep:
+                        _navigator1.CurrentTitle = "Bếp";
+                        _navigator.CurrentViewModel = new BepViewModel();
+                        break;
                     case TypeOfView.TinhTrangBan:
                         _navigator1.CurrentTitle = "Tình trạng bàn";
                         _navigator.CurrentViewModel = new TinhTrangBanViewModel();
@@ -65,10 +69,8 @@ namespace QuanLyNhaHang.Command
                         _navigator1.CurrentTitle = "Cài đặt";
                         _navigator.CurrentViewModel = new CaiDatViewModel();
                         break;
-                    case TypeOfView.Bep:
-                        _navigator1.CurrentTitle = "Bếp";
-                        _navigator.CurrentViewModel = new BepViewModel();
-                        break;
+                   
+                      
                     default:
                         break;
                 }
